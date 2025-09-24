@@ -65,24 +65,50 @@ nav ul li a:hover {
     border-bottom: 1px solid #9635ff;
 }
 
-/* CV Section */
-#cv {
-    padding: 80px 0;
-    background-color: #1a0a00; /* Variante plus claire de bg_color */
-    color: #f77800;
-}
-
+/* Section CV - Aperçu PDF */
 .cv-content {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
     flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 30px;
 }
 
-.cv-text, .cv-skills {
+.cv-text {
     flex: 1;
+    min-width: 300px;
     padding: 20px;
-    background-color: rgba(150, 53, 255, 0.1); /* Fond légèrement transparent avec link_color */
+    background-color: rgba(150, 53, 255, 0.1);
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.cv-preview {
+    flex: 1;
+    min-width: 300px;
+    padding: 20px;
+    background-color: rgba(150, 53, 255, 0.1);
+    border-radius: 5px;
+    margin: 10px;
+}
+
+.pdf-container {
+    width: 100%;
+    border: 1px solid #9635ff;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.pdf-container embed {
+    width: 100%;
+    height: 500px;
+    border: none;
+}
+
+.cv-skills {
+    padding: 20px;
+    background-color: rgba(150, 53, 255, 0.1);
     border-radius: 5px;
     margin: 10px;
 }
@@ -93,7 +119,11 @@ nav ul li a:hover {
 
 .cv-skills ul li {
     margin-bottom: 10px;
-    color: #9635ff; /* link_color pour les compétences */
+    color: #9635ff;
+}
+
+.btn i {
+    margin-right: 8px;
 }
 
 /* Projets Section */
