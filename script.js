@@ -77,83 +77,130 @@ function startGame() {
     const gameOverElement = document.getElementById('game-over');
     const restartButton = document.getElementById('restart');
 
+    // Réinitialisation complète
     let score = 0;
     let isJumping = false;
     let gameRunning = true;
-    let cactusPosition = 800; // Position initiale à droite
+    let cactusPosition = 800;
+    let gameSpeed = 5; // Vitesse initiale
+    let speedIncreaseInterval = 5; // Augmenter la vitesse tous les 5 points
+    let lastCactusTime = 0;
+    let minCactusInterval = 100; // Intervalle minimum entre les cactus (ms)
+    let maxCactusInterval = 2000; // Intervalle maximum entre les cactus (ms)
+    let nextCactusTime = getRandomInterval();
 
-    // Réinitialiser la position du dino
+    // Réinitialiser les éléments visuels
     dino.style.bottom = '50px';
+    cactus.style.left = cactusPosition + 'px';
+    scoreElement.textContent = '0';
+    gameOverElement.classList.add('hidden');
 
-    // Saut du dinosaure
-    document.addEventListener('keydown', (e) => {
-        if ((e.key === ' ' || e.key === 'ArrowUp') && !isJumping && gameRunning) {
-            isJumping = true;
-            jump();
-        }
-    });
+    // Fonction pour générer un intervalle aléatoire entre min et max
+    function getRandomInterval() {
+        return Math.floor(Math.random() * (maxCactusInterval - minCactusInterval + 1)) + minCactusInterval;
+    }
 
+    // Fonction de saut
     function jump() {
-        let position = 0;
+        if (isJumping) return;
+        isJumping = true;
+        let jumpHeight = 0;
         const jumpUp = setInterval(() => {
-            if (position >= 100) {
+            if (jumpHeight >= 100) {
                 clearInterval(jumpUp);
                 const jumpDown = setInterval(() => {
-                    if (position <= 0) {
+                    if (jumpHeight <= 0) {
                         clearInterval(jumpDown);
                         isJumping = false;
                         dino.style.bottom = '50px';
                     } else {
-                        position -= 5;
-                        dino.style.bottom = 50 + position + 'px';
+                        jumpHeight -= 5;
+                        dino.style.bottom = 50 + jumpHeight + 'px';
                     }
                 }, 20);
             } else {
-                position += 5;
-                dino.style.bottom = 50 + position + 'px';
+                jumpHeight += 5;
+                dino.style.bottom = 50 + jumpHeight + 'px';
             }
         }, 20);
     }
 
-    // Déplacement du cactus
-    const cactusMove = setInterval(() => {
+    // Écouteur pour le saut
+    document.addEventListener('keydown', (e) => {
+        if ((e.key === ' ' || e.key === 'ArrowUp') && gameRunning) {
+            jump();
+        }
+    });
+
+    // Boucle principale du jeu
+    let gameLoop;
+    let lastTime = 0;
+
+    function startGameLoop(timestamp) {
+        if (!lastTime) lastTime = timestamp;
+        const deltaTime = timestamp - lastTime;
+        lastTime = timestamp;
+
         if (!gameRunning) return;
 
-        cactusPosition -= 5;
+        // Déplacer le cactus
+        cactusPosition -= gameSpeed * (deltaTime / 20);
         cactus.style.left = cactusPosition + 'px';
 
-        // Si le cactus sort de l'écran, le replacer à droite et augmenter le score
+        // Si le cactus sort de l'écran, le replacer à droite après un délai aléatoire
         if (cactusPosition < -20) {
             cactusPosition = 800;
+        }
+
+        // Vérifier si un nouveau cactus doit apparaître
+        if (timestamp - lastCactusTime > nextCactusTime && cactusPosition >= 800) {
+            lastCactusTime = timestamp;
+            nextCactusTime = getRandomInterval();
             score++;
             scoreElement.textContent = score;
+
+            // Augmenter la vitesse toutes les `speedIncreaseInterval` points
+            if (score % speedIncreaseInterval === 0 && gameSpeed < 15) {
+                gameSpeed += 0.5;
+                // Réduire l'intervalle minimum entre les cactus pour augmenter la difficulté
+                if (minCactusInterval > 500) {
+                    minCactusInterval -= 100;
+                }
+            }
         }
 
         // Détection de collision
         const dinoRect = dino.getBoundingClientRect();
         const cactusRect = cactus.getBoundingClientRect();
 
-        if (
+        const isColliding =
             dinoRect.right > cactusRect.left &&
             dinoRect.left < cactusRect.right &&
             dinoRect.bottom > cactusRect.top &&
-            parseInt(dino.style.bottom) < 60
-        ) {
+            dinoRect.top < cactusRect.bottom &&
+            !isJumping;
+
+        if (isColliding) {
             gameOver();
         }
-    }, 20);
+
+        requestAnimationFrame(startGameLoop);
+    }
+
+    // Démarrer la boucle de jeu après un délai
+    setTimeout(() => {
+        requestAnimationFrame(startGameLoop);
+    }, 1000);
 
     function gameOver() {
         gameRunning = false;
+        cancelAnimationFrame(startGameLoop);
         gameOverElement.classList.remove('hidden');
     }
 
-    restartButton.addEventListener('click', () => {
-        gameOverElement.classList.add('hidden');
-        score = 0;
-        scoreElement.textContent = score;
-        cactusPosition = 800;
-        cactus.style.left = cactusPosition + 'px';
-        gameRunning = true;
-    });
+    // Bouton de redémarrage
+    restartButton.onclick = () => {
+        cancelAnimationFrame(startGameLoop);
+        startGame();
+    };
 }
