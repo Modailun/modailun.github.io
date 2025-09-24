@@ -38,7 +38,7 @@ header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 100%; /* Prend toute la hauteur du header */
+    height: 100%;
 }
 
 nav ul {
@@ -57,7 +57,7 @@ nav ul li a {
 }
 
 nav ul li a:hover {
-    color: #9635ff; /* link_color pour le survol */
+    color: #9635ff;
 }
 
 /* Hero Section */
@@ -70,8 +70,6 @@ nav ul li a:hover {
 }
 
 /* Section CV - Aperçu PDF */
-
-
 .cv-content {
     display: flex;
     flex-wrap: wrap;
@@ -80,15 +78,7 @@ nav ul li a:hover {
     margin-bottom: 30px;
 }
 
-.cv-text {
-    flex: 1;
-    min-width: 300px;
-    padding: 20px;
-    background-color: rgba(150, 53, 255, 0.1);
-    border-radius: 5px;
-    margin: 10px;
-}
-
+.cv-text,
 .cv-preview {
     flex: 1;
     min-width: 300px;
@@ -98,7 +88,6 @@ nav ul li a:hover {
     margin: 10px;
 }
 
-/* Paragraphes du CV */
 .cv-text p {
     margin-bottom: 15px;
     line-height: 1.7;
@@ -127,29 +116,6 @@ nav ul li a:hover {
 
 /* Détails du CV */
 .cv-details {
-    margin: 25px 0;
-    padding: 15px;
-    background-color: rgba(247, 120, 0, 0.1);
-    border-radius: 5px;
-    border-left: 4px solid #f77800;
-}
-
-.pdf-container {
-    width: 100%;
-    border: 1px solid #9635ff;
-    border-radius: 5px;
-    overflow: hidden;
-    background-color: #fff;
-}
-
-.pdf-container embed {
-    width: 100%;
-    height: 500px;
-    border: none;
-}
-
-/* Détails du CV */
-.cv-details {
     margin: 20px 0;
     padding: 15px;
     background-color: rgba(247, 120, 0, 0.1);
@@ -166,6 +132,21 @@ nav ul li a:hover {
 .cv-details i {
     margin-right: 10px;
     color: #f77800;
+}
+
+/* Aperçu PDF */
+.pdf-container {
+    width: 100%;
+    border: 1px solid #9635ff;
+    border-radius: 5px;
+    overflow: hidden;
+    background-color: #fff;
+}
+
+.pdf-container embed {
+    width: 100%;
+    height: 500px;
+    border: none;
 }
 
 /* Grille des compétences */
@@ -227,11 +208,11 @@ nav ul li a:hover {
     background-color: #1a0a00;
     border-radius: 5px;
     overflow: hidden;
-    box-shadow: 0 3px 10px rgba(150, 53, 255, 0.3); /* Ombre avec link_color */
+    box-shadow: 0 3px 10px rgba(150, 53, 255, 0.3);
     width: 100%;
     max-width: 560px;
     margin: 0 auto;
-    border: 1px solid #9635ff; /* Bordure avec link_color */
+    border: 1px solid #9635ff;
 }
 
 .projet-card iframe {
@@ -250,11 +231,22 @@ footer {
     border-top: 1px solid #9635ff;
 }
 
+footer .container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+}
+
+footer p {
+    margin-bottom: 10px;
+}
+
 /* Boutons */
 .btn {
     display: inline-block;
-    background-color: #9635ff; /* link_color pour les boutons */
-    color: #0f0500; /* Texte en contraste */
+    background-color: #9635ff;
+    color: #0f0500;
     padding: 10px 20px;
     text-decoration: none;
     border-radius: 5px;
@@ -264,7 +256,7 @@ footer {
 }
 
 .btn:hover {
-    background-color: #f77800; /* fg_color pour le survol */
+    background-color: #f77800;
     color: #0f0500;
 }
 
@@ -305,7 +297,6 @@ section.visible {
     border-radius: 10px;
 }
 
-/* Jeu du Dinosaure */
 .dino {
     position: absolute;
     width: 50px;
@@ -321,7 +312,7 @@ section.visible {
     width: 20px;
     height: 50px;
     bottom: 50px;
-    left: 800px; /* Position initiale à droite */
+    left: 800px;
     background-color: #0f0500;
 }
 
@@ -396,4 +387,23 @@ section.visible {
 
 .hidden {
     display: none !important;
+}
+
+/* Liens sociaux dans le footer */
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.social-links a {
+    color: #f77800;
+    font-size: 28px;
+    transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+    color: #9635ff;
+    transform: scale(1.2);
 }

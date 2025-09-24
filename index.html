@@ -7,21 +7,20 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
-<!-- Easter Egg : Jeu du Dinosaure -->
-<div id="easter-egg" class="easter-egg-hidden">
-    <div class="game-container">
-        <button id="close-game" class="close-button">&times;</button>
-        <div class="dino" id="dino"></div>
-        <div class="cactus" id="cactus"></div>
-        <div class="ground"></div>
-        <div class="score">Score : <span id="score">0</span></div>
-        <div class="game-over hidden" id="game-over">
-            Game Over !<br>
-            <button id="restart">Rejouer</button>
+<body>
+    <div id="easter-egg" class="easter-egg-hidden">
+        <div class="game-container">
+            <button id="close-game" class="close-button">&times;</button>
+            <div class="dino" id="dino"></div>
+            <div class="cactus" id="cactus"></div>
+            <div class="ground"></div>
+            <div class="score">Score : <span id="score">0</span></div>
+            <div class="game-over hidden" id="game-over">
+                Game Over !<br>
+                <button id="restart">Rejouer</button>
+            </div>
         </div>
     </div>
-</div>
-<body>
     <header>
         <div class="container">
             <h1>Jean Van Inghelandt</h1>
@@ -45,21 +44,16 @@
             <div class="cv-content">
                 <div class="cv-text">
                     <h3>À propos de moi</h3>
-
                     <p>
                         Diplômé en génie informatique de l’<strong>INSA Toulouse</strong>,<br>
                         je suis un développeur passionné par les technologies de l’information.
                     </p>
-
-                    <p>
-                        Mon objectif est d’appliquer mes compétences en :
-                    </p>
+                    <p>Mon objectif est d’appliquer mes compétences en :</p>
                     <ul class="cv-highlights">
                         <li><strong>Développement logiciel</strong></li>
                         <li><strong>Systèmes distribués</strong></li>
                         <li><strong>Big Data</strong></li>
                     </ul>
-
                     <p>
                         Mon parcours académique et mes expériences professionnelles — notamment chez <strong>Mercedes-Benz AG</strong> et <strong>LAAS-CNRS</strong> — m’ont permis de maîtriser des outils clés :
                     </p>
@@ -68,20 +62,15 @@
                         <li><strong>CI/CD</strong></li>
                         <li>Méthodologie <strong>Agile (Scrum)</strong></li>
                     </ul>
-
-                    <p>
-                        En parallèle, je cultive deux passions qui inspirent ma créativité :
-                    </p>
+                    <p>En parallèle, je cultive deux passions qui inspirent ma créativité :</p>
                     <ul class="cv-highlights">
                         <li>La <strong>création de jeux vidéo</strong></li>
                         <li>La <strong>culture japonaise</strong> (manga, animation)</li>
                     </ul>
-
                     <p>
                         Actuellement à la recherche de mon <strong>premier emploi en France</strong>,<br>
                         je suis ouvert aux opportunités qui me permettront de contribuer à des projets ambitieux.
                     </p>
-
                     <div class="cv-details">
                         <p><i class="fas fa-map-marker-alt"></i> Domérat, France</p>
                         <p><i class="fas fa-phone"></i> (+33) 6 95 93 54 51</p>
@@ -145,7 +134,18 @@
     </section>
     <footer>
         <div class="container">
-            <p>2025 Jean Van Inghelandt</p>
+            <p>2025 Jean Van Inghelandt.</p>
+            <div class="social-links">
+                <a href="https://github.com/Modailun" target="_blank" rel="noopener noreferrer" aria-label="GitHub">
+                    <i class="fab fa-github"></i>
+                </a>
+                <a href="https://modailun.itch.io/" target="_blank" rel="noopener noreferrer" aria-label="itch.io">
+                    <i class="fab fa-itch-io"></i>
+                </a>
+                <a href="https://www.linkedin.com/in/jean-van-inghelandt/" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
+                    <i class="fab fa-linkedin"></i>
+                </a>
+            </div>
         </div>
     </footer>
     <script src="script.js"></script>
