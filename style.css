@@ -8,8 +8,8 @@
 body {
     font-family: 'Arial', sans-serif;
     line-height: 1.6;
-    color: #f77800; /* Couleur principale du texte (fg_color) */
-    background-color: #0f0500; /* Couleur de fond principale (bg_color) */
+    color: #f77800;
+    background-color: #0f0500;
 }
 
 .container {
@@ -23,18 +23,22 @@ body {
 header {
     background-color: #0f0500;
     color: #f77800;
-    padding: 0px 0;
+    padding: 10px 0;
     position: fixed;
     width: 100%;
     top: 0;
     z-index: 1000;
-    border-bottom: 1px solid #9635ff; /* link_color pour la bordure */
+    height: 60px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #9635ff;
 }
 
 header .container {
     display: flex;
     justify-content: space-between;
     align-items: center;
+    height: 100%; /* Prend toute la hauteur du header */
 }
 
 nav ul {
@@ -61,11 +65,15 @@ nav ul li a:hover {
     background-color: #0f0500;
     color: #f77800;
     text-align: center;
-    padding: 150px 0 50px;
+    padding: 100px 0 50px;
     border-bottom: 1px solid #9635ff;
 }
 
 /* Section CV - Aperçu PDF */
+#cv {
+    scroll-margin-top: 60px; 
+}
+
 .cv-content {
     display: flex;
     flex-wrap: wrap;
@@ -106,24 +114,65 @@ nav ul li a:hover {
     border: none;
 }
 
-.cv-skills {
-    padding: 20px;
-    background-color: rgba(150, 53, 255, 0.1);
+/* Détails du CV */
+.cv-details {
+    margin: 20px 0;
+    padding: 15px;
+    background-color: rgba(247, 120, 0, 0.1);
     border-radius: 5px;
-    margin: 10px;
+    border-left: 4px solid #f77800;
 }
 
-.cv-skills ul {
+.cv-details p {
+    margin-bottom: 8px;
+    display: flex;
+    align-items: center;
+}
+
+.cv-details i {
+    margin-right: 10px;
+    color: #f77800;
+}
+
+/* Grille des compétences */
+.skills-grid {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.skill-category {
+    flex: 1;
+    min-width: 200px;
+    margin: 10px;
+    padding: 15px;
+    background-color: rgba(150, 53, 255, 0.1);
+    border-radius: 5px;
+}
+
+.skill-category h4 {
+    color: #f77800;
+    margin-bottom: 10px;
+    border-bottom: 1px solid #9635ff;
+    padding-bottom: 5px;
+}
+
+.skill-category ul {
     list-style: none;
 }
 
-.cv-skills ul li {
-    margin-bottom: 10px;
-    color: #9635ff;
+.skill-category ul li {
+    margin-bottom: 8px;
+    color: #fff;
+    position: relative;
+    padding-left: 15px;
 }
 
-.btn i {
-    margin-right: 8px;
+.skill-category ul li:before {
+    content: "•";
+    color: #9635ff;
+    position: absolute;
+    left: 0;
 }
 
 /* Projets Section */
@@ -131,6 +180,7 @@ nav ul li a:hover {
     padding: 80px 0;
     background-color: #0f0500;
     color: #f77800;
+    scroll-margin-top: 60px; 
 }
 
 .projets-grid {
