@@ -35,6 +35,12 @@ let konamiCode = ['ArrowUp', 'ArrowUp', 'ArrowDown', 'ArrowDown', 'ArrowLeft', '
 let konamiIndex = 0;
 
 document.addEventListener('keydown', (e) => {
+    // Quitter le jeu avec Échap
+    if (e.key === 'Escape') {
+        deactivateEasterEgg();
+    }
+
+    // Activation du Konami Code
     if (e.key === konamiCode[konamiIndex]) {
         konamiIndex++;
         if (konamiIndex === konamiCode.length) {
@@ -50,9 +56,20 @@ function activateEasterEgg() {
     const easterEgg = document.getElementById('easter-egg');
     easterEgg.classList.add('visible');
     startGame();
+
+    // Ajout de l'écouteur pour le bouton "Fermer"
+    document.getElementById('close-game').addEventListener('click', deactivateEasterEgg);
 }
 
-// Jeu du Dinosaure
+function deactivateEasterEgg() {
+    const easterEgg = document.getElementById('easter-egg');
+    easterEgg.classList.remove('visible');
+
+    // Réinitialiser le jeu
+    const gameOverElement = document.getElementById('game-over');
+    gameOverElement.classList.add('hidden');
+}
+
 function startGame() {
     const dino = document.getElementById('dino');
     const cactus = document.getElementById('cactus');
@@ -63,6 +80,10 @@ function startGame() {
     let score = 0;
     let isJumping = false;
     let gameRunning = true;
+    let cactusPosition = 800; // Position initiale à droite
+
+    // Réinitialiser la position du dino
+    dino.style.bottom = '50px';
 
     // Saut du dinosaure
     document.addEventListener('keydown', (e) => {
@@ -81,6 +102,7 @@ function startGame() {
                     if (position <= 0) {
                         clearInterval(jumpDown);
                         isJumping = false;
+                        dino.style.bottom = '50px';
                     } else {
                         position -= 5;
                         dino.style.bottom = 50 + position + 'px';
@@ -94,23 +116,27 @@ function startGame() {
     }
 
     // Déplacement du cactus
-    let cactusPosition = 800;
     const cactusMove = setInterval(() => {
         if (!gameRunning) return;
 
         cactusPosition -= 5;
-        cactus.style.right = cactusPosition + 'px';
+        cactus.style.left = cactusPosition + 'px';
 
+        // Si le cactus sort de l'écran, le replacer à droite et augmenter le score
         if (cactusPosition < -20) {
             cactusPosition = 800;
             score++;
             scoreElement.textContent = score;
         }
 
-        // Collision
+        // Détection de collision
+        const dinoRect = dino.getBoundingClientRect();
+        const cactusRect = cactus.getBoundingClientRect();
+
         if (
-            cactusPosition > 480 &&
-            cactusPosition < 520 &&
+            dinoRect.right > cactusRect.left &&
+            dinoRect.left < cactusRect.right &&
+            dinoRect.bottom > cactusRect.top &&
             parseInt(dino.style.bottom) < 60
         ) {
             gameOver();
@@ -127,7 +153,7 @@ function startGame() {
         score = 0;
         scoreElement.textContent = score;
         cactusPosition = 800;
-        cactus.style.right = cactusPosition + 'px';
+        cactus.style.left = cactusPosition + 'px';
         gameRunning = true;
     });
 }
