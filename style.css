@@ -70,9 +70,7 @@ nav ul li a:hover {
 }
 
 /* Section CV - Aperçu PDF */
-#cv {
-    scroll-margin-top: 60px; 
-}
+
 
 .cv-content {
     display: flex;
@@ -98,6 +96,42 @@ nav ul li a:hover {
     background-color: rgba(150, 53, 255, 0.1);
     border-radius: 5px;
     margin: 10px;
+}
+
+/* Paragraphes du CV */
+.cv-text p {
+    margin-bottom: 15px;
+    line-height: 1.7;
+}
+
+/* Listes à puces pour les points clés */
+.cv-highlights {
+    margin: 10px 0 20px 20px;
+    list-style-type: none;
+    padding-left: 0;
+}
+
+.cv-highlights li {
+    margin-bottom: 8px;
+    position: relative;
+    padding-left: 20px;
+}
+
+.cv-highlights li:before {
+    content: "•";
+    color: #9635ff;
+    position: absolute;
+    left: 0;
+    font-weight: bold;
+}
+
+/* Détails du CV */
+.cv-details {
+    margin: 25px 0;
+    padding: 15px;
+    background-color: rgba(247, 120, 0, 0.1);
+    border-radius: 5px;
+    border-left: 4px solid #f77800;
 }
 
 .pdf-container {
@@ -180,7 +214,6 @@ nav ul li a:hover {
     padding: 80px 0;
     background-color: #0f0500;
     color: #f77800;
-    scroll-margin-top: 60px; 
 }
 
 .projets-grid {
