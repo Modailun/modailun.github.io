@@ -7,6 +7,19 @@
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 </head>
+<!-- Easter Egg : Jeu du Dinosaure -->
+<div id="easter-egg" class="easter-egg-hidden">
+    <div class="game-container">
+        <div class="dino" id="dino"></div>
+        <div class="cactus" id="cactus"></div>
+        <div class="ground"></div>
+        <div class="score">Score : <span id="score">0</span></div>
+        <div class="game-over hidden" id="game-over">
+            Game Over !<br>
+            <button id="restart">Rejouer</button>
+        </div>
+    </div>
+</div>
 <body>
     <header>
         <div class="container">
@@ -131,7 +144,7 @@
     </section>
     <footer>
         <div class="container">
-            <p>&copy; 2025 Jean Van Inghelandt. Tous droits réservés.</p>
+            <p>2025 Jean Van Inghelandt</p>
         </div>
     </footer>
     <script src="script.js"></script>
