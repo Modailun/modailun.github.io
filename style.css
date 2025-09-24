@@ -1,0 +1,147 @@
+/* Reset & Base */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Arial', sans-serif;
+    line-height: 1.6;
+    color: #333;
+    background-color: #f4f4f4;
+}
+
+.container {
+    width: 90%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px 0;
+}
+
+/* Header */
+header {
+    background-color: #222;
+    color: #fff;
+    padding: 10px 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    z-index: 1000;
+}
+
+header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+nav ul {
+    display: flex;
+    list-style: none;
+}
+
+nav ul li {
+    margin-left: 20px;
+}
+
+nav ul li a {
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Hero Section */
+#hero {
+    background-color: #333;
+    color: #fff;
+    text-align: center;
+    padding: 150px 0 50px;
+}
+
+/* CV Section */
+#cv {
+    padding: 80px 0;
+    background-color: #fff;
+}
+
+.cv-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cv-text, .cv-skills {
+    flex: 1;
+    padding: 20px;
+}
+
+.cv-skills ul {
+    list-style: none;
+}
+
+.cv-skills ul li {
+    margin-bottom: 10px;
+}
+
+/* Projets Section */
+#projets {
+    padding: 80px 0;
+    background-color: #f4f4f4;
+}
+
+.projets-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(560px, 1fr)); /* Largeur minimale pour l'iframe */
+    gap: 30px;
+    justify-content: center;
+}
+
+.projet-card {
+    background-color: #fff;
+    border-radius: 5px;
+    overflow: hidden;
+    box-shadow: 0 3px 5px rgba(0,0,0,0.1);
+    width: 100%;
+    max-width: 560px; /* Correspond à la largeur de l'iframe */
+    margin: 0 auto;
+}
+
+.projet-card iframe {
+    width: 100%;
+    height: 167px; /* Hauteur fixe pour l'iframe itch.io */
+    border: none;
+    display: block;
+}
+
+.projet-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+}
+
+.projet-card h3, .projet-card p {
+    padding: 15px;
+}
+
+/* Footer */
+footer {
+    background-color: #222;
+    color: #fff;
+    text-align: center;
+    padding: 20px 0;
+}
+
+/* Boutons */
+.btn {
+    display: inline-block;
+    background-color: #333;
+    color: #fff;
+    padding: 10px 20px;
+    text-decoration: none;
+    border-radius: 5px;
+    margin-top: 10px;
+}
+
+.btn:hover {
+    background-color: #555;
+}
